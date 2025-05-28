@@ -6,3 +6,15 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss(),],
 })
+
+build: {
+  chunkSizeWarningLimit: 1000, // increase limit if needed
+  rollupOptions: {
+    output: {
+      manualChunks: {
+        // Example: split vendor libraries into separate chunk
+        vendor: ['react', 'react-dom', 'other-large-library'],
+      }
+    }
+  }
+}
