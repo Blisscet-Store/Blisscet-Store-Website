@@ -1,4 +1,4 @@
-import "../../../tailwind.css";
+import "../../../styles.css";
 import useAuth from "../../../Authentication/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { z } from "zod";

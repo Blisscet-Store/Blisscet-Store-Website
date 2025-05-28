@@ -1,7 +1,7 @@
-import "../../../tailwind.css"
-import { motion } from "framer-motion"
-import logo from "../../../assets/images/Blisscuit_Logo_Icon.png"
-import { Link } from "react-router-dom"
+import "../../../styles.css";
+import { motion } from "framer-motion";
+import logo from "../../../assets/images/Blisscuit_Logo_Icon.png";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
     return (
@@ -141,7 +141,7 @@ const MainPage = () => {
                 </div>
             </motion.div>
         </div>
-    )
-}
+    );
+};
 
-export default MainPage
+export default MainPage;

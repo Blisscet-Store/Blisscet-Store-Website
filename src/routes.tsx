@@ -1,16 +1,16 @@
-import { createBrowserRouter } from "react-router-dom"
-import Home from "./routes/Home"
-import DashBoard from "./routes/dashboard/DashBoard"
-import MainPage from "./routes/mainWebsite/pages/MainPage"
-import Products from "./routes/mainWebsite/pages/Products"
-import UserSettings from "./routes/mainWebsite/pages/UserPage"
-import ErrPage from "./components/ErrPage"
-import UserCart from "./routes/mainWebsite/pages/UserCart"
-import Login from "./Authentication/Login"
-import Register from "./Authentication/Register"
-import PrivateRoutes from "./routes/PrivateRoutes"
-import PrivateDashboard from "./routes/PrivateDashboard"
-import Err403Dashboard from "./components/Err403Dashboard"      
+import { createBrowserRouter } from "react-router-dom";
+import Home from "./routes/Home";
+import DashBoard from "./routes/dashboard/DashBoard";
+import MainPage from "./routes/mainWebsite/pages/MainPage";
+import Products from "./routes/mainWebsite/pages/Products";
+import UserSettings from "./routes/mainWebsite/pages/UserPage";
+import ErrPage from "./components/ErrPage";
+import UserCart from "./routes/mainWebsite/pages/UserCart";
+import Login from "./Authentication/Login";
+import Register from "./Authentication/Register";
+import PrivateRoutes from "./routes/PrivateRoutes";
+import PrivateDashboard from "./routes/PrivateDashboard";
+import Err403Dashboard from "./components/Err403Dashboard";
 
 const router = createBrowserRouter([
     // Private Routes
@@ -58,6 +58,6 @@ const router = createBrowserRouter([
     { path: "/accessForbidden", element: <Err403Dashboard /> },
     { path: `/login`, element: <Login /> },
     { path: `/register`, element: <Register /> },
-])
+]);
 
-export default router
+export default router;

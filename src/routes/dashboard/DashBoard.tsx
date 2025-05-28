@@ -1,8 +1,8 @@
-import "../../tailwind.css"
-import useGetUsers from "./hooks/useGetUsers"
+import "../../styles.css";
+import useGetUsers from "./hooks/useGetUsers";
 
 const DashBoard = () => {
-    const { data: users, isLoading, error } = useGetUsers()
+    const { data: users, isLoading, error } = useGetUsers();
     return (
         <>
             {error && <div>{error.message}</div>}
@@ -14,7 +14,7 @@ const DashBoard = () => {
                 </div>
             ))}
         </>
-    )
-}
+    );
+};
 
-export default DashBoard
+export default DashBoard;

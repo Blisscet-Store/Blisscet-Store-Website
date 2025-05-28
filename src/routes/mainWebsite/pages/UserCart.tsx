@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react"
-import "../../../tailwind.css"
-import useDeleteProductsFromCart from "../hooks/useDeleteProductFromCart"
-import useGetUserCart from "../hooks/useGetUserCartData"
-import { FaTimes, FaShoppingCart, FaWhatsapp } from "react-icons/fa"
-import { motion, AnimatePresence } from "framer-motion"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+import "../../../styles.css";
+import useDeleteProductsFromCart from "../hooks/useDeleteProductFromCart";
+import useGetUserCart from "../hooks/useGetUserCartData";
+import { FaTimes, FaShoppingCart, FaWhatsapp } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const UserCart = () => {
     // products hooks (GET, DELETE)
-    const { data: userCart, isLoading, error } = useGetUserCart()
-    const deleteProductFromCart = useDeleteProductsFromCart()
+    const { data: userCart, isLoading, error } = useGetUserCart();
+    const deleteProductFromCart = useDeleteProductsFromCart();
 
     // handling errors
-    const [showError, setShowError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // WhatsApp phone number
-    const whatsappNumber = "+963939715367"
+    const whatsappNumber = "+963939715367";
 
     // Function to generate WhatsApp message with order details
     const generateWhatsAppMessage = () => {
-        if (!userCart || userCart.length === 0) return ""
+        if (!userCart || userCart.length === 0) return "";
 
         const subtotal = userCart.reduce(
             (total, item) => total + item.price * item.count,
             0
-        )
-        const tax = subtotal * 0.07
-        const shipping = 5
-        const total = subtotal + tax + shipping
+        );
+        const tax = subtotal * 0.07;
+        const shipping = 5;
+        const total = subtotal + tax + shipping;
 
         let message =
-            "*Hello! I'd like to place an order for the following items:*\n\n"
+            "*Hello! I'd like to place an order for the following items:*\n\n";
 
         // Add items to the message
         userCart.forEach((item, index) => {
@@ -39,51 +39,51 @@ const UserCart = () => {
                 item.count
             } x $${item.price.toFixed(2)} = $${(
                 item.count * item.price
-            ).toFixed(2)}\n`
-        })
+            ).toFixed(2)}\n`;
+        });
 
         // Add order summary
-        message += `\n*Subtotal:* $${subtotal.toFixed(2)}\n`
-        message += `*Shipping:* $${shipping.toFixed(2)}\n`
-        message += `*Tax (7%):* $${tax.toFixed(2)}\n`
-        message += `*Total:* $${total.toFixed(2)}\n\n`
-        message += "Please confirm my order. Thank you!"
+        message += `\n*Subtotal:* $${subtotal.toFixed(2)}\n`;
+        message += `*Shipping:* $${shipping.toFixed(2)}\n`;
+        message += `*Tax (7%):* $${tax.toFixed(2)}\n`;
+        message += `*Total:* $${total.toFixed(2)}\n\n`;
+        message += "Please confirm my order. Thank you!";
 
-        return encodeURIComponent(message)
-    }
+        return encodeURIComponent(message);
+    };
 
     // Effect to handle error display and auto-hide
     // post error
     useEffect(() => {
         if (deleteProductFromCart.error) {
-            setErrorMessage(deleteProductFromCart.error.message)
-            setShowError(true)
+            setErrorMessage(deleteProductFromCart.error.message);
+            setShowError(true);
 
             // Set a timer to hide the error after 5 seconds
             const timer = setTimeout(() => {
-                setShowError(false)
-            }, 5000) // 5 seconds
+                setShowError(false);
+            }, 5000); // 5 seconds
 
             // Clean up the timer when component unmounts or error changes
-            return () => clearTimeout(timer)
+            return () => clearTimeout(timer);
         }
-    }, [deleteProductFromCart.error])
+    }, [deleteProductFromCart.error]);
 
     // get error
     useEffect(() => {
         if (error) {
-            setErrorMessage(error.message)
-            setShowError(true)
+            setErrorMessage(error.message);
+            setShowError(true);
 
             // Set a timer to hide the error after 5 seconds
             const timer = setTimeout(() => {
-                setShowError(false)
-            }, 5000) // 5 seconds
+                setShowError(false);
+            }, 5000); // 5 seconds
 
             // Clean up the timer when component unmounts or error changes
-            return () => clearTimeout(timer)
+            return () => clearTimeout(timer);
         }
-    }, [error])
+    }, [error]);
 
     return (
         <>
@@ -349,7 +349,7 @@ const UserCart = () => {
                 </AnimatePresence>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default UserCart
+export default UserCart;
