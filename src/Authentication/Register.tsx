@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
-import "../tailwind.css"
-import { motion } from "framer-motion"
-import authLogo from "../assets/images/Blisscuit_Logo_Icon.png"
-import { Link, useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { toast, ToastContainer } from "react-toastify"
-import useRegister from "./hooks/useRegister"
-import { register } from "../dto"
-import useAuth from "./hooks/useAuth"
+import { useEffect, useState } from "react";
+import "../styles.css";
+import { motion } from "framer-motion";
+import authLogo from "../assets/images/Blisscuit_Logo_Icon.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast, ToastContainer } from "react-toastify";
+import useRegister from "./hooks/useRegister";
+import { register } from "../dto";
+import useAuth from "./hooks/useAuth";
 
 const registerSchema = z.object({
     username: z
@@ -60,9 +60,9 @@ const registerSchema = z.object({
         ])
         .optional(),
     admin: z.boolean().optional(),
-})
+});
 
-type RegisterFormData = z.infer<typeof registerSchema>
+type RegisterFormData = z.infer<typeof registerSchema>;
 
 const Register = () => {
     // validation with zod
@@ -73,20 +73,20 @@ const Register = () => {
         formState: { errors },
     } = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
-    })
+    });
 
     // show password function
-    const [isPassword, setPassword] = useState(false)
+    const [isPassword, setPassword] = useState(false);
     const showPasswordFun = () => {
         if (isPassword) {
-            setPassword(false)
+            setPassword(false);
         } else {
-            setPassword(true)
+            setPassword(true);
         }
-    }
+    };
 
     // mutation with query
-    const registerUser = useRegister()
+    const registerUser = useRegister();
 
     // regstering notifcation
     const handleRegister = async (data: RegisterFormData) => {
@@ -94,20 +94,20 @@ const Register = () => {
             autoClose: false,
             toastId: "signup-notification",
             isLoading: true,
-        })
+        });
 
         // Call the mutation
         registerUser.mutate(data as register, {
             onSuccess: (data: register) => {
-                localStorage.setItem("userData", JSON.stringify(data))
+                localStorage.setItem("userData", JSON.stringify(data));
                 if (!data.token) {
                     toast.update("signup-notification", {
                         render: "Signup successful but no token received. Please try again.",
                         type: "warning",
                         isLoading: false,
                         autoClose: 3000,
-                    })
-                    return
+                    });
+                    return;
                 }
 
                 toast.update("signup-notification", {
@@ -116,7 +116,7 @@ const Register = () => {
                     type: "success",
                     isLoading: false,
                     autoClose: 1000,
-                })
+                });
             },
             onError: (error: any) => {
                 toast.update("signup-notification", {
@@ -124,20 +124,20 @@ const Register = () => {
                     type: "error",
                     isLoading: false,
                     autoClose: 3000,
-                })
+                });
             },
-        })
-    }
+        });
+    };
 
     // preventing going back to login page
-    const { user } = useAuth()
-    const navigate = useNavigate()
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
-            navigate("/", { replace: true })
+            navigate("/", { replace: true });
         }
-    }, [user, navigate])
+    }, [user, navigate]);
 
     // return inside register component
     return (
@@ -168,8 +168,8 @@ const Register = () => {
                         </div>
                         <form
                             onSubmit={handleSubmit((data) => {
-                                handleRegister(data)
-                                reset()
+                                handleRegister(data);
+                                reset();
                             })}
                             className="authForm"
                         >
@@ -343,7 +343,7 @@ const Register = () => {
                 </div>
             </motion.div>
         </>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;

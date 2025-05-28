@@ -1,30 +1,30 @@
-import "../tailwind.css"
-import logo from "../assets/images/Blisscuit_Logo_Icon.png"
-import { FaShoppingCart } from "react-icons/fa"
-import useAuth from "../Authentication/hooks/useAuth"
-import { Link, useLocation } from "react-router-dom"
-import { useState } from "react"
-import useGetUserCart from "../routes/mainWebsite/hooks/useGetUserCartData"
+import "../styles.css";
+import logo from "../assets/images/Blisscuit_Logo_Icon.png";
+import { FaShoppingCart } from "react-icons/fa";
+import useAuth from "../Authentication/hooks/useAuth";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import useGetUserCart from "../routes/mainWebsite/hooks/useGetUserCartData";
 
 const Navbar = () => {
     // current path for active link
-    const location = useLocation()
-    const currentPath = location.pathname
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     // get user data
-    const { user } = useAuth()
+    const { user } = useAuth();
 
     // show routes in navbar after 600px width
-    const [isNavSmall, setNavSmall] = useState(false)
+    const [isNavSmall, setNavSmall] = useState(false);
 
     // logout function
     const logout = () => {
-        localStorage.removeItem("userData")
-        window.location.href = "/login"
-    }
+        localStorage.removeItem("userData");
+        window.location.href = "/login";
+    };
 
     // get user cart length
-    const { data: userCart } = useGetUserCart()
+    const { data: userCart } = useGetUserCart();
 
     return (
         <>
@@ -165,7 +165,7 @@ const Navbar = () => {
                 </button>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,14 +1,14 @@
-import { Navigate, Outlet } from "react-router-dom"
-import "../tailwind.css"
-import useAuth from "../Authentication/hooks/useAuth"
+import { Navigate, Outlet } from "react-router-dom";
+import "../styles.css";
+import useAuth from "../Authentication/hooks/useAuth";
 
 const PrivateRoutes = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
     if (!user) {
-        return <Navigate to="/login" />
+        return <Navigate to="/login" />;
     } else {
-        return <Outlet />
+        return <Outlet />;
     }
-}
+};
 
-export default PrivateRoutes
+export default PrivateRoutes;

@@ -1,10 +1,15 @@
-import "../tailwind.css"
-import { Link } from "react-router-dom"
-import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa"
-import logo from "../assets/images/Blisscuit_Logo_Icon.png"
+import "../styles.css";
+import { Link } from "react-router-dom";
+import {
+    FaFacebook,
+    FaTwitter,
+    FaInstagram,
+    FaPinterest,
+} from "react-icons/fa";
+import logo from "../assets/images/Blisscuit_Logo_Icon.png";
 
 const Footer = () => {
-    const currentYear = new Date().getFullYear()
+    const currentYear = new Date().getFullYear();
 
     return (
         <footer className="w-full py-10 text-white Footer">
@@ -150,7 +155,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

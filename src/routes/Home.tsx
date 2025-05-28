@@ -1,7 +1,7 @@
-import { Outlet } from "react-router-dom"
-import "../tailwind.css"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import { Outlet } from "react-router-dom";
+import "../styles.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
     return (
@@ -13,7 +13,7 @@ const Home = () => {
             </main>
             <Footer />
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

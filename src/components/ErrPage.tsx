@@ -1,9 +1,9 @@
-import "../tailwind.css"
-import errImg from "../assets/images/error-svgrepo-com (1).svg"
-import { isRouteErrorResponse, useRouteError } from "react-router-dom"
+import "../styles.css";
+import errImg from "../assets/images/error-svgrepo-com (1).svg";
+import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 const ErrPage = () => {
-    const err = useRouteError()
+    const err = useRouteError();
     return (
         <>
             <div className="flex justify-center">
@@ -18,7 +18,7 @@ const ErrPage = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default ErrPage
+export default ErrPage;

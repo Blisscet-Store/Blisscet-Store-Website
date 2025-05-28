@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
-import errImg from "../assets/images/error-svgrepo-com (1).svg"
-import "../tailwind.css"
+import { Link } from "react-router-dom";
+import errImg from "../assets/images/error-svgrepo-com (1).svg";
+import "../styles.css";
 
 const Err403Dashboard = () => {
     return (
@@ -17,7 +17,7 @@ const Err403Dashboard = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Err403Dashboard
+export default Err403Dashboard;

@@ -1,15 +1,15 @@
-import "../tailwind.css"
-import { Link, useNavigate } from "react-router-dom"
-import { motion } from "framer-motion"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useEffect, useState } from "react"
-import { ToastContainer, toast } from "react-toastify"
-import authLogo from "../assets/images/Blisscuit_Logo_Icon.png"
-import useLogin from "./hooks/useLogin"
-import { login } from "../dto"
-import useAuth from "./hooks/useAuth"
+import "../styles.css";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import authLogo from "../assets/images/Blisscuit_Logo_Icon.png";
+import useLogin from "./hooks/useLogin";
+import { login } from "../dto";
+import useAuth from "./hooks/useAuth";
 
 const loginSchema = z.object({
     email: z
@@ -49,9 +49,9 @@ const loginSchema = z.object({
         ])
         .optional(),
     admin: z.boolean().optional(),
-})
+});
 
-type LoginFormData = z.infer<typeof loginSchema>
+type LoginFormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
     // validation with zod
@@ -62,20 +62,20 @@ const Login = () => {
         formState: { errors },
     } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
-    })
+    });
 
     // show password function
-    const [isPassword, setPassword] = useState(false)
+    const [isPassword, setPassword] = useState(false);
     const showPasswordFun = () => {
         if (isPassword) {
-            setPassword(false)
+            setPassword(false);
         } else {
-            setPassword(true)
+            setPassword(true);
         }
-    }
+    };
 
     // mutation with query
-    const loginUser = useLogin()
+    const loginUser = useLogin();
 
     // logging notification
     const handleLogin = async (data: LoginFormData) => {
@@ -83,20 +83,20 @@ const Login = () => {
             autoClose: false,
             toastId: "login-notification",
             isLoading: true,
-        })
+        });
 
         // Call the mutation
         loginUser.mutate(data as login, {
             onSuccess: (data: login) => {
-                localStorage.setItem("userData", JSON.stringify(data))
+                localStorage.setItem("userData", JSON.stringify(data));
                 if (!data.token) {
                     toast.update("login-notification", {
                         render: "Login successful but no token received. Please try again.",
                         type: "warning",
                         isLoading: false,
                         autoClose: 3000,
-                    })
-                    return
+                    });
+                    return;
                 }
 
                 toast.update("login-notification", {
@@ -105,7 +105,7 @@ const Login = () => {
                     type: "success",
                     isLoading: false,
                     autoClose: 1000,
-                })
+                });
             },
             onError: (error: any) => {
                 toast.update("login-notification", {
@@ -113,20 +113,20 @@ const Login = () => {
                     type: "error",
                     isLoading: false,
                     autoClose: 3000,
-                })
+                });
             },
-        })
-    }
+        });
+    };
 
     // preventing going back to login page
-    const { user } = useAuth()
-    const navigate = useNavigate()
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
-            navigate("/", { replace: true })
+            navigate("/", { replace: true });
         }
-    }, [user, navigate])
+    }, [user, navigate]);
 
     // return inside login component
     return (
@@ -157,8 +157,8 @@ const Login = () => {
                         </div>
                         <form
                             onSubmit={handleSubmit((data) => {
-                                handleLogin(data)
-                                reset()
+                                handleLogin(data);
+                                reset();
                             })}
                             className="authForm"
                         >
@@ -238,7 +238,7 @@ const Login = () => {
                 </div>
             </motion.div>
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

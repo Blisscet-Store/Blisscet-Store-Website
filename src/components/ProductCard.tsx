@@ -1,43 +1,44 @@
-import { useEffect, useState } from "react"
-import { Products } from "../dto"
-import { motion } from "framer-motion"
-import usePostProductToCart from "../routes/mainWebsite/hooks/usePostProductsToCart"
-import useGetUserCart from "../routes/mainWebsite/hooks/useGetUserCartData"
-import usePatchProductToCart from "../routes/mainWebsite/hooks/usePatchProductsInCart"
+import "../styles.css";
+import { useEffect, useState } from "react";
+import { Products } from "../dto";
+import { motion } from "framer-motion";
+import usePostProductToCart from "../routes/mainWebsite/hooks/usePostProductsToCart";
+import useGetUserCart from "../routes/mainWebsite/hooks/useGetUserCartData";
+import usePatchProductToCart from "../routes/mainWebsite/hooks/usePatchProductsInCart";
 
 interface ProductCardProps {
-    product: Products
+    product: Products;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-    const [productCount, setProductCount] = useState(1)
-    const [isHovered, setIsHovered] = useState(false)
+    const [productCount, setProductCount] = useState(1);
+    const [isHovered, setIsHovered] = useState(false);
 
     // decrease quantity by one
     const decrementQuantity = () => {
-        setProductCount(productCount - 1)
-    }
+        setProductCount(productCount - 1);
+    };
 
     // increase quantity by one
     const incrementQuantity = () => {
-        setProductCount(productCount + 1)
-    }
+        setProductCount(productCount + 1);
+    };
 
     // get user cart
-    const { data: userCart } = useGetUserCart()
-    let isProductHere = false
+    const { data: userCart } = useGetUserCart();
+    let isProductHere = false;
     userCart?.map(
         (cart) =>
             cart.productImage.url === product.productImage.url &&
             (isProductHere = true)
-    )
+    );
 
     // post product data to backend
-    const postProductData = usePostProductToCart()
-    const patchProductData = usePatchProductToCart()
+    const postProductData = usePostProductToCart();
+    const patchProductData = usePatchProductToCart();
     const handleProdcutData = () => {
         if (isProductHere) {
-            console.log("updated")
+            console.log("updated");
             patchProductData.mutate({
                 productImage: {
                     public_id: product.productImage.public_id,
@@ -47,9 +48,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 category: product.category,
                 price: product.price,
                 count: productCount,
-            })
+            });
         } else {
-            console.log("created")
+            console.log("created");
             postProductData.mutate({
                 productImage: {
                     public_id: product.productImage.public_id,
@@ -59,29 +60,29 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 category: product.category,
                 price: product.price,
                 count: productCount,
-            })
+            });
         }
-    }
+    };
 
     // handling errors
-    const [showError, setShowError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Effect to handle error display and auto-hide
     useEffect(() => {
         if (postProductData.error) {
-            setErrorMessage(postProductData.error.message)
-            setShowError(true)
+            setErrorMessage(postProductData.error.message);
+            setShowError(true);
 
             // Set a timer to hide the error after 5 seconds
             const timer = setTimeout(() => {
-                setShowError(false)
-            }, 5000) // 5 seconds
+                setShowError(false);
+            }, 5000); // 5 seconds
 
             // Clean up the timer when component unmounts or error changes
-            return () => clearTimeout(timer)
+            return () => clearTimeout(timer);
         }
-    }, [postProductData.error])
+    }, [postProductData.error]);
 
     return (
         <>
@@ -159,7 +160,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 </div>
             </motion.div>
         </>
-    )
-}
+    );
+};
 
-export default ProductCard
+export default ProductCard;

@@ -1,0 +1,768 @@
+@import "tailwindcss";
+
+/* Loader */
+.loader {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    padding: 14px 22px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bar {
+    display: inline-block;
+    width: 3px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    animation: scale-up4 1s linear infinite;
+}
+
+.bar:nth-child(2) {
+    height: 35px;
+    margin: 0 5px;
+    animation-delay: 0.25s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+@keyframes scale-up4 {
+    20% {
+        background-color: #ffff;
+        transform: scaleY(1.5);
+    }
+
+    40% {
+        transform: scaleY(1);
+    }
+}
+
+/* Font */
+@font-face {
+    font-family: "redHatR";
+    src: url(./assets/fonts/RedHatText-Regular.ttf);
+}
+
+@font-face {
+    font-family: "redHatB";
+    src: url(./assets/fonts/RedHatText-Bold.ttf);
+}
+
+@font-face {
+    font-family: "redHatSB";
+    src: url(./assets/fonts/RedHatText-SemiBold.ttf);
+}
+
+/* auth Pages */
+
+.BG {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-image: url("./assets/images/confetti-doodles-bg.svg");
+    /* background-color: #d4a25833; */
+    z-index: 90;
+    transition: all 0.5s;
+}
+
+.AuthAnimate {
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    position: fixed;
+    transition: all 0.5s;
+}
+
+.authPage {
+    z-index: 99;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+.authPageStyle {
+    font-family: redHatB;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(3px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    padding: 2vh 20px;
+    outline: 3px solid #fff;
+    border-radius: 10px;
+    color: white;
+    gap: 20px;
+    transition: all 0.5s;
+}
+
+.authHeaderTypeWLogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    transition: all 0.5s;
+}
+
+.authLogo {
+    width: 70px;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.authInputLabel {
+    font-family: redHatR;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transition: all 0.5s;
+}
+
+.authInputExplenation {
+    font-family: redHatSB;
+    margin-bottom: 2px;
+}
+
+.authInput {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: 2px solid white;
+    border-radius: 10px;
+    padding-left: 15px;
+    transition: all 0.5s;
+}
+
+.authInput::placeholder {
+    color: #ffffffaa;
+}
+
+.authInput:focus {
+    outline-color: #d4a258;
+}
+
+.authInput-A {
+    height: 40px;
+    border: none;
+    outline: 2px solid #ff706e;
+    border-radius: 10px;
+    padding-left: 15px;
+    transition: all 0.5s;
+}
+
+.authInput-A:focus {
+    outline-color: #ff706e;
+}
+
+.authShowPassword {
+    align-self: flex-end;
+    margin-right: 10px;
+    margin-top: -32px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.authInputErrHandler {
+    color: #ff706e;
+    margin-top: -10px;
+    font-family: redHatR;
+    font-style: italic;
+    font-size: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.authInputErrHandler-A {
+    color: #ff706e;
+    margin-top: 0px;
+    font-family: redHatR;
+    font-style: italic;
+    font-size: 15px;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s;
+}
+
+.authPasswordInputErrHandler {
+    color: #ff706e;
+    margin-top: 0px;
+    font-family: redHatR;
+    font-style: italic;
+    font-size: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.authPasswordInputErrHandler-A {
+    color: #ff706e;
+    margin-top: 10px;
+    font-family: redHatR;
+    font-style: italic;
+    font-size: 15px;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s;
+}
+
+.authSubmitBtn {
+    margin-top: 10px;
+    width: 100%;
+    height: 45px;
+    font-family: redHatSB;
+    letter-spacing: 0.1px;
+    border: none;
+    background-color: #d4a258;
+    border: 2px solid #d4a258;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.authSubmitBtn:hover {
+    border-color: white;
+}
+
+.authSwitchType {
+    margin-top: 0px;
+    width: 100%;
+    height: 45px;
+    font-family: redHatSB;
+    letter-spacing: 0.1px;
+    border: none;
+    background-color: #d4a258;
+    border: 2px solid #d4a258;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.authSwitchType:hover {
+    border-color: white;
+}
+
+@media (max-width: 600px) {
+    .authPage {
+        width: 100%;
+        background-image: url("./assets/images/confetti-doodles-bg.svg");
+    }
+
+    .authPageStyle {
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        outline: none;
+        border-radius: 0;
+        padding: 2vh;
+    }
+
+    .authSwitchType {
+        margin-top: 10px;
+    }
+
+    .AuthBG {
+        background-color: #f7ca75;
+    }
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    font-family: redHatB;
+}
+
+.navbarStyle {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    padding: 0 0 0 1%;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border-bottom: 2px solid white;
+    z-index: 97;
+}
+
+.navLogoWName {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.navLogo {
+    width: 55px;
+}
+
+.navRoutes {
+    display: flex;
+    align-items: center;
+    font-family: redHatSB;
+    height: 8vh;
+}
+
+.navDashboard,
+.navProducts,
+.navCart,
+.navUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    cursor: pointer;
+    height: 8vh;
+    transition: all 0.5s;
+}
+
+.navProducts-A,
+.navCart-A,
+.navUser-A {
+    background-color: white;
+    color: #ddb579;
+}
+
+.navDashboard:hover,
+.navProducts:hover,
+.navCart:hover,
+.navUser:hover {
+    background-color: white;
+    color: #ddb579;
+}
+
+.LogoutBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    height: 8vh;
+    transition: all 0.5s;
+    background-color: #ff706e;
+    color: #fff;
+    border-bottom: 1px solid white;
+}
+
+.LogoutBtn:hover {
+    background-color: #ff7f7d;
+}
+
+.navCart {
+    flex-direction: row-reverse;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.userImg {
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.navSandwich {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30px;
+    height: 30px;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.navSandwich div {
+    width: 100%;
+    height: 3px;
+    border-radius: 50px;
+    background-color: white;
+    transition: all 0.5s;
+}
+
+.SWLine1 {
+    transform: rotate(45deg);
+}
+
+.SWLine2 {
+    opacity: 0;
+}
+
+.SWLine3 {
+    margin-top: -15.3px;
+    transform: rotate(-45deg);
+}
+
+.navRoutesAf6 {
+    font-family: redHatB;
+    position: fixed;
+    right: 0;
+    top: 8vh;
+    display: none;
+    flex-direction: column;
+    width: 50%;
+    height: 92vh;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    z-index: 99;
+    border-left: 2px solid white;
+    transform: translateX(100%);
+    transition: all 0.5s;
+}
+
+.navRoutesAf6-A {
+    transform: translateX(0%);
+}
+
+.LogoutBtnAf6 {
+    width: 100%;
+    position: absolute;
+    align-self: center;
+    bottom: 0;
+    border: none;
+}
+
+@media (max-width: 800px) {
+    .navbarStyle {
+        padding: 0 2%;
+    }
+
+    .navSandwich {
+        display: flex;
+    }
+
+    .navRoutes {
+        display: none;
+    }
+
+    .navRoutesAf6 {
+        display: flex;
+    }
+}
+
+/* MainPage */
+
+.mainPage {
+    margin-top: 8vh;
+    position: relative;
+    z-index: 91;
+}
+
+.exploreProsuctsBtn,
+.showCartBtn {
+    background-color: white;
+    color: #ddb579;
+    outline: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.exploreProsuctsBtn:hover,
+.showCartBtn:hover {
+    background-color: transparent;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .exploreProsuctsBtn,
+    .showCartBtn {
+        width: 200px;
+        background-color: white;
+        color: #ddb579;
+        outline: 2px solid white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+}
+
+/* Footer */
+
+Footer {
+    margin-top: 8vh;
+    position: relative;
+    z-index: 91;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(3px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 2px solid white;
+}
+
+/* products */
+
+.products {
+    position: relative;
+    z-index: 91;
+    margin-top: 8vh;
+}
+
+.productsStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding: 2vh 2%;
+    transition: all 0.5s;
+    gap: 20px;
+}
+
+.productErrorHandling {
+    transform: translateY(-8vh);
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 2px solid white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    font-family: redHatB;
+    position: fixed;
+    top: 8vh;
+    color: #ff706e;
+    font-style: italic;
+    z-index: 92;
+    transition: all 0.5s;
+}
+
+.productErrorHandling-A {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+@media (max-width: 800px) {
+    .productCard {
+        width: 250px;
+    }
+
+    .productImage {
+        width: 250px;
+    }
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 91;
+    margin-top: 8vh;
+    padding: 0 20px;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.userCartItem {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 5px;
+    width: 100%;
+    outline: 1px solid white;
+    transition: all 0.3s ease;
+}
+
+.emptyCartBG {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    outline: 2px solid white;
+    padding: 2rem;
+    margin-top: 2vh;
+    font-family: redHatB;
+}
+
+.purchase-area {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+}
+
+.purchase-area button {
+    width: 100%;
+    flex-wrap: wrap-reverse;
+    padding: 10px 5px;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.purchase-area button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.purchase-area button:hover::after {
+    left: 100%;
+}
+
+@media (max-width: 800px) {
+    .userCartItem {
+        width: 100%;
+    }
+
+    .emptyCart {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .purchase-area {
+        width: 90%;
+    }
+}
+
+/* userSettings */
+
+.userSettings {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+.userSettingsStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    z-index: 91;
+    color: white;
+}
+
+.usHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    margin-bottom: 2vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    transition: all 0.5s;
+}
+
+.usSection {
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.usMainCon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.usDataCard {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ffffff66;
+}
+
+#changeUserAvatar {
+    display: none;
+}
+
+.submitUserDataBtn {
+    font-family: redHatSB;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    outline: 2px solid white;
+    background-color: white;
+    color: #ddb579;
+    width: 100%;
+    padding: 8px 40px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.submitUserDataBtn:hover {
+    background-color: transparent;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .userSettingsStyle {
+        width: 90%;
+    }
+}
+
+/* user Deletion */
+
+.confirmDeletion,
+.deleteAccountBtn {
+    font-size: 17px;
+    font-weight: 550;
+    padding: 15px 40px;
+    background-color: #ff8886;
+    border-radius: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.confirmDeletion:hover,
+.deleteAccountBtn:hover {
+    background-color: #ff706e;
+}
